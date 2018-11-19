@@ -1,6 +1,6 @@
 # 스냅 사진 마켓 서비스  -by lambmukja(a.k.a 사진찍을고양)
 
-# 개발방법
+## 개발방법
 
 ### 1. pyenv 설치 및 python 가상환경 설정
 ```bash
@@ -23,5 +23,16 @@ $ pip install -r requirements.txt
 ```
 
 ### 3. settings.py 받기
-* settings.py는 보안상 이슈때문에 github에 올려놓지 않았으니 말해서 받을것
+* settings.py는 보안상 이슈때문에 github에 올려놓지 않았으니 말해서 받을 것
 
+
+### 4. git hook 추가
+code convention을 맞추기 위해 자신의 git 프로젝트 폴더 안 .git/hooks/pre-commit 파일에 아래 내용을 넣을 것
+
+```sh
+#!/bin/sh
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -e '\.py$')
+if [ -n "$FILES" ]; then
+    flake8 $FILES
+fi
+```
