@@ -22,8 +22,8 @@ $ pyenv local [자신이 선택한 이름]
 $ pip install -r requirements.txt
 ```
 
-### 3. settings.py 받기
-* settings.py는 보안상 이슈때문에 github에 올려놓지 않았으니 말해서 받을 것
+### 3. config.py 받기
+* settings.py에서 부르는 config.py는 보안상 이슈때문에 github에 올려놓지 않았으니 말해서 받을 것
 
 
 ### 4. git hook 추가
