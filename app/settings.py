@@ -73,17 +73,15 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+from app import config
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'censored',
-        'USER': 'censored',
-        'PASSWORD': "censored(ask to manager)",
-        'HOST': 'localhost',
-        'PORT': '',
     }
 }
 
+DATABASES['default'].update(config.DB_CONFIG)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
