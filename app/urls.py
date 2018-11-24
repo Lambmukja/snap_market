@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from member.views import home_view
+from app.member.views import home_view
 
 urlpatterns = [
     url(r'^home/$', home_view, name='home'),
