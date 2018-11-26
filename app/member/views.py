@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from app.member.forms import MemberForm, LoginForm
+from member.forms import MemberForm, LoginForm
 
 
 def login_view(request):

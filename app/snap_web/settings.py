@@ -36,11 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # local
-    'app.member',
-    'app.market',
-    'app.contract',
-    'app.review',
-    'app.tag',
+    'member',
+    'market',
+    'contract',
+    'review',
+    'tag',
 ]
 
 MIDDLEWARE = [
@@ -51,10 +51,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # our apps
 ]
 
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'snap_web.urls'
 
 TEMPLATES = [
     {
@@ -72,12 +71,12 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'snap_web.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-from app import config
+from snap_web import config
 
 DATABASES = {
     'default': {
