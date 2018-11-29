@@ -1,4 +1,5 @@
-django<2.0
+django<2.2
+djangorestframework
 psycopg2-binary
 flake8
 
