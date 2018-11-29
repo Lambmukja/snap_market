@@ -1,0 +1,7 @@
+{
+    "DEFAULT": {
+        "alpha": 0.5,
+        "beta": 1.0,
+        "gamma": 0.5
+    }
+}

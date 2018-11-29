@@ -5,41 +5,16 @@ import statistics
 from tags import Tag
 from typing import Bool, List, Tuple
 
-params = config()
-alpha, beta, gamma = params.values()
-
-def update_weights():
-    """Update each tag's weight
-    Assume that Tag objects are sorted with tag type(int)
-                and each tag object has own reference number.
-    :return: :list: list of weight
-    :rtype: List
-    """
-    tags = Tag.objects.all()
-    # get total number of tag reference
-    total_tag_num = sum(tag.reference for tag in tags)
-    # calculate each tag weight
-    for tag in tags:
-        tag_ref = tag.reference
-        weight = tag_ref / total_tag_num
-        tag.weight = weight
-        tag.save() # update tag object
+weight_config = config('config.json', 'DEFAULT')
+alpha = weight_config['alpha']
+beta = weight_config['beta']
+gamma = weight_config['gamma']
 
 
-def update_score_metric(debug=False: Bool):
-    """Update every scoring metric result
-    :param debug: if debug mode, show log
-    :type debug: Bool
-    """
-    # left this as an additional implementation.
-    pass
-
-
-def recommend(tags: List[Tuple], debug=False: Bool) -> List[int]:
+def recommend(tags: List[Tuple]) -> List[int]:
     """Recommend with tag and return photographer id list
+
     :param tags: list of user tag(info(char), type(int))
-    :param debug; if debbuging, show search result.
-    :type debug: Bool
     :return: return photographer 1-5th id list
     :rtype: list[int]
     """
@@ -55,7 +30,7 @@ def recommend(tags: List[Tuple], debug=False: Bool) -> List[int]:
                                                    filtered_tags))
         # calculate match_rate
         match_rate = len(matched_tags) / len(tags)
-        score = alpha * avg_weight +  + gamma * match_rate
+        score = alpha * avg_weight + gamma * match_rate
         result.append((market.studio_name, score))
     result = sorted(result, key=itemgetter(1)) # sort with score
     return result

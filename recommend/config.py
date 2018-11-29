@@ -1,7 +1,7 @@
-from configparser import ConfigParser()
+import json
 
 
-def config(filename:str = 'config.ini', section: str = 'weight'):
+def config(filename:str = 'config.json', section: str = 'DEFAULT'):
     """Read scoring configuration file
 
     :param filename: (optional) File name with parameter related to scoring
@@ -9,16 +9,14 @@ def config(filename:str = 'config.ini', section: str = 'weight'):
     :return: :dict: scoring config paramter
     :rtype: dict
     """
-    parser = ConfigParser().read(filename)
-    config = {}
-    if parser.has_section(section):
-        params = parser.items(section)
-        for param in params:
-            config[param[0]] = param[1]
+    with open(filename, 'r') as f:
+        parser = json.load(f)
+    weights = None
+    if section in parser:
+        weights = parser[section]
     else:
-        if debug:
-            raise Exception(f'Section {section} not found in the {filename} file')
-    return config
+        raise Exception(f'Section {section} not found in the {filename} file')
+    return weights
 
 
 if __name__ == '__main__':
