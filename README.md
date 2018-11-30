@@ -1,6 +1,6 @@
 # 스냅 사진 마켓 서비스  -by lambmukja(a.k.a 사진찍을고양)
 
-## 개발방법
+## I. 개발방법
 
 ### 1. pyenv 설치 및 python 가상환경 설정
 ```bash
@@ -35,4 +35,19 @@ FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -e '\.py$')
 if [ -n "$FILES" ]; then
     flake8 $FILES
 fi
+```
+
+## II. 로컬에서 Django 실행하기
+### 1. Django 실행
+```bash
+$ python app/manage.py runserver
+```
+* 배포시에는 다음과 같이 할 것
+```bash
+$ python app/manage.py runserver 0:8000
+```
+
+* collectstatic 세팅하기
+```bash
+$ python app/manage.py collectstatic
 ```
