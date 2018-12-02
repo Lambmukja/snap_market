@@ -274,3 +274,6 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/python,django,pycharm+all
+
+# Mac
+.DS_Store
