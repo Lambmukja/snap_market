@@ -31,4 +31,9 @@ h1, h2, h3, h4 {
 
 body {
     padding-left: 15px;
+    background: black !important;
+}
+
+.navbar > a.logo {
+  font-family: 'Do Hyeon', sans-serif;
 }
