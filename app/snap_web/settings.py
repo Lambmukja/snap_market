@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 3rd party
     'rest_framework',
     # local
+    'snap_web',
     'member',
     'market',
     'contract',
@@ -63,9 +64,7 @@ ROOT_URLCONF = 'snap_web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'snap_web', 'templates'),
-        ],
+        'DIRS': [ ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
