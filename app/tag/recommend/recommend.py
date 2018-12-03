@@ -1,17 +1,18 @@
-from config import config
-from operator import itemgetter
-from market import Market
 import statistics
-from tags import Tag
-from typing import Bool, List, Tuple
+from operator import itemgetter
+from typing import List, Tuple
+
+from market.models import Market
+from tag.models import Tag
+from tag.recommend.config import Config
 
 
-def recommend(tags: List[Tuple]) -> List[int]:
+def recommend(tags: List[Tuple]):
     """Recommend with tag and return photographer id list
 
     :param tags: list of user tag(info(char), type(int))
     :return: return photographer 1-5th id list
-    :rtype: list[int]
+    :rtype: list[tuple]
     """
     markets = Market.objects.all()
     tag_types = set(map(lambda x: x[1], tags))
@@ -21,13 +22,11 @@ def recommend(tags: List[Tuple]) -> List[int]:
         matched_tags = market_tags & tag_types
         # calculate average matched weight
         filtered_tags = Tag.objects.filter(tags__in=matched_tags)
-        avg_weight = statistics.mean(map(lambda x: weight[x.type],
-                                                   filtered_tags))
+        avg_weight = statistics.mean(map(lambda x: filtered_tags.weight[x.type],
+                                         filtered_tags))
         # calculate match_rate
         match_rate = len(matched_tags) / len(tags)
-        score = config.ALPHA * avg_weight + config.GAMMA * match_rate
+        score = Config.ALPHA * avg_weight + Config.GAMMA * match_rate
         result.append((market.studio_name, score))
-    result = sorted(result, key=itemgetter(1)) # sort with score
+    result = sorted(result, key=itemgetter(1))  # sort with score
     return result
-
-
