@@ -5,11 +5,6 @@ import statistics
 from tags import Tag
 from typing import Bool, List, Tuple
 
-weight_config = config('config.json', 'DEFAULT')
-alpha = weight_config['alpha']
-beta = weight_config['beta']
-gamma = weight_config['gamma']
-
 
 def recommend(tags: List[Tuple]) -> List[int]:
     """Recommend with tag and return photographer id list
@@ -22,7 +17,7 @@ def recommend(tags: List[Tuple]) -> List[int]:
     tag_types = set(map(lambda x: x[1], tags))
     result = list()
     for market in markets:
-        market_tag_types = set(map(lambda x: x[1], market.tags))
+        market_tags = set(map(lambda x: x[1], market.tags))
         matched_tags = market_tags & tag_types
         # calculate average matched weight
         filtered_tags = Tag.objects.filter(tags__in=matched_tags)
@@ -30,7 +25,7 @@ def recommend(tags: List[Tuple]) -> List[int]:
                                                    filtered_tags))
         # calculate match_rate
         match_rate = len(matched_tags) / len(tags)
-        score = alpha * avg_weight + gamma * match_rate
+        score = config.ALPHA * avg_weight + config.GAMMA * match_rate
         result.append((market.studio_name, score))
     result = sorted(result, key=itemgetter(1)) # sort with score
     return result
