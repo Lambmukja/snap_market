@@ -10,10 +10,12 @@ local_settings.py
 db.sqlite3
 media
 
+collected_static/
+
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
 # <django-project-name>/staticfiles/
-app/config.py
+app/snap_web/config.py
 
 ### Django.Python Stack ###
 # Byte-compiled / optimized / DLL files
@@ -309,3 +311,5 @@ tags
 [._]*.un~
 
 # End of https://www.gitignore.io/api/vim
+# Mac
+.DS_Store
