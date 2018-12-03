@@ -11,6 +11,3 @@ class Tag(models.Model):
         '태그 타입', choices=CHOICES['태그타입'],
     )
     tag = models.CharField('태그', max_length=10, null=False, blank=False)
-    reference = models.PositiveIntegerField(blank=False, null=False, default=0)
-    weight = models.FloatField(blank=False, null=False, default=0.)
-
