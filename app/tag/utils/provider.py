@@ -17,22 +17,22 @@ class MarketProvider(BaseProvider):
     def market(self, **kwargs):
         fake  = Faker('ko_KR')
         attributes = {
-                'studio_name': fake.company(),
-                'posts': "",
-                'working_time': {
-                    'start_time': fake.time(pattern="%H:%M:%S",
-                                            end_datetime=None),
-                    'end_time': fake.time(pattern="%H:%M:%S",
-                                          end_datetime=None),
-                },
-                'costs': fake. pyint(),
-                'kakao_id': fake.user_name(),
-                'photographer_idx': fake.pyint(),
-                'contract_idxs': [], # array of contract idx(int)
-                'tags': [],
-                'location': fake.address(),
-                'phone': fake.phone_number(),
-            }
+            'studio_name': fake.company(),
+            'posts': "",
+            'working_time': {
+                'start_time': fake.time(pattern="%H:%M:%S",
+                                        end_datetime=None),
+                'end_time': fake.time(pattern="%H:%M:%S",
+                                      end_datetime=None),
+            },
+            'costs': fake. pyint(),
+            'kakao_id': fake.user_name(),
+            'photographer_idx': fake.pyint(),
+            'contract_idxs': [], # array of contract idx(int)
+            'tags': [],
+            'location': fake.address(),
+            'phone': fake.phone_number(),
+        }
         for key, value in kwargs.items():
             if not key in attributes:
                 raise ValueError(f'Key error! There is no {key} in Makret')
@@ -109,7 +109,7 @@ class TagProvider(BaseProvider):
         }
         for key, value in kwargs.items():
             if not key in attributes:
-                raise ValueError(f'Key error! There is no {key} in Contract')
+                raise ValueError(f'Key error! There is no {key} in Tag')
             attributes[key] = value
         # save tag number
         type(self).__counter += 1
