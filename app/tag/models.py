@@ -12,5 +12,6 @@ class Tag(models.Model):
     )
     tag = models.CharField('태그', max_length=10, null=False, blank=False)
     reference = models.PositiveIntegerField(blank=False, null=False, default=0)
+    # the number of Tag used
     weight = models.FloatField(blank=False, null=False, default=0.)
 
