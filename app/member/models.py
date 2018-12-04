@@ -11,9 +11,11 @@ class Member(User):
     member_type = models.PositiveSmallIntegerField(
         '회원종류', choices=CHOICES['회원종류'],
     )
+    # TODO: foreign key로 엮을것인가?
     consumer_idx = models.PositiveIntegerField(
         '소비자_idx', blank=True, null=True,
     )
+    # TODO: foreign key로 엮을것인가?
     photographer_idx = models.PositiveIntegerField(
         '사진작가_idx', blank=True, null=True,
     )

@@ -10,9 +10,9 @@ class MemberForm(UserCreationForm):
         model = Member
         fields = ('member_type', 'username', 'password1', 'password2', 'first_name', 'last_name')
 
-    def clean_email(self):
+    def clean_username(self):
         username = self.cleaned_data.get('username')
-        if Member.objects.filter(useruname=username).exists():
+        if Member.objects.filter(username=username).exists():
             raise forms.ValidationError("이미 존재하는 아이디입니다.")
         return username
 
@@ -20,6 +20,7 @@ class MemberForm(UserCreationForm):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
         if password1 != password2:
+            # TODO: 한글로 표시되지 않음!
             raise forms.ValidationError("두 비밀번호가 일치하지 않습니다.")
         return self.cleaned_data
 
