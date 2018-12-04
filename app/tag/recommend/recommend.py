@@ -1,6 +1,7 @@
 import statistics
 from operator import itemgetter
 from typing import List, Tuple
+
 from market.models import Market
 from tag.models import Tag
 from tag.recommend.config import Config
