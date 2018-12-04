@@ -1,11 +1,14 @@
-from django.test import TestCase
+import random
+
 from faker import Faker
+from django.test import TestCase
+from model_mommy import mommy
+
 from market.models import Market
 from tag.utils.provider import MarketProvider, TagProvider
 from tag.models import Tag
 from tag.recommend.recommend import recommend
-from model_mommy import mommy
-import random
+
 
 fake = Faker('ko_KR')
 fake.add_provider(MarketProvider)
