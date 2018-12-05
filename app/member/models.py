@@ -20,6 +20,18 @@ class Member(User):
         '사진작가_idx', blank=True, null=True,
     )
 
+    def save(self, *args, **kwargs):
+        super(Member, self).save(*args, **kwargs)
+        if self.member_type == 0:  # 소비자
+            consumer = Consumer(member_idx=self.pk, contracts=[])
+            consumer.save()
+            self.consumer_idx = consumer.pk
+        else:  # 사진작가
+            photographer = Photographer(member_idx=self.pk, markets=[])
+            photographer.save()
+            self.photographer_idx = photographer.pk
+        super(Member, self).save(*args, **kwargs)
+
 
 class Consumer(models.Model):
     member_idx = models.PositiveIntegerField(

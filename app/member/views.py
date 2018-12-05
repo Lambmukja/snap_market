@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from member.forms import MemberForm, LoginForm
-from member.models import Consumer, Member, Photographer
 
 
 def login_view(request):
@@ -32,21 +31,8 @@ def signup_view(request):
     if request.method == 'POST':
         form = MemberForm(data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            member_type = form.cleaned_data.get('member_type')
             form.save()
-            member = Member.objects.get(username=username)
-            if member_type == 0:  # 소비자
-                consumer = Consumer(member_idx=member.pk, contracts=[])
-                consumer.save()
-                member.consumer_idx = consumer.pk
-                member.save()
-            else:  # 사진작가
-                photographer = Photographer(member_idx=member.pk, markets=[])
-                photographer.save()
-                member.photographer_idx = photographer.pk
-                member.save()
-
+            username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
