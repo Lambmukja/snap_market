@@ -23,5 +23,5 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     path('member/', include('member.urls')),
-    # path('api/', include('snap_web.api.urls')),
+    path('api/', include('snap_web.api.urls')),
 ]

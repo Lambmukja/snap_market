@@ -37,6 +37,9 @@ def signup_view(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect("home")
+        else:
+            context = {"form": form}
+            return render(request, 'signup.html', context)
     elif request.method == 'GET':
         form = MemberForm()
     else:
