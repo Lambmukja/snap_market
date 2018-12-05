@@ -1,5 +1,18 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block full-content %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'img/sparkler-677774_1920.jpg' %}" alt="First slide">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>당신만을 위한<br> 사진작가를 만나보세요.</h1>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
 
 {% block content %}
-    This is home.html
 {% endblock %}
