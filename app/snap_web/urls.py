@@ -23,5 +23,6 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     path('member/', include('member.urls')),
+    path('market/', include('market.urls')),
     path('api/', include('snap_web.api.urls')),
 ]
