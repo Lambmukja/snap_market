@@ -15,3 +15,4 @@ class Market(models.Model):
     tags = ArrayField(models.PositiveSmallIntegerField())
     location = models.CharField("위치", max_length=100, blank=True, null=True)
     phone = models.CharField("전화번호", max_length=20, blank=True, null=True)
+    # TODO: 사진 저장할 수 있는 field, like 수?
