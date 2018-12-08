@@ -10,3 +10,11 @@ body {
 .navbar {
   background-color: white !important;
 }
+
+.main_tag {
+  margin-left: 30px
+}
+
+.main_markets {
+  margin-left: 30px
+}
