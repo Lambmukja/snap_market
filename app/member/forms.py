@@ -2,10 +2,16 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 
+import member
 from member.models import Member
 
 
 class MemberForm(UserCreationForm):
+    member_type = forms.ChoiceField(
+        choices=member.models.CHOICES['회원종류'],
+        widget=forms.RadioSelect(),
+    )
+
     class Meta:
         model = Member
         fields = ('member_type', 'username', 'password1', 'password2', 'first_name', 'last_name')
