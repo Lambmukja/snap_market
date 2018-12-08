@@ -3,7 +3,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from contract.models import Contract
+from market.models import Market
 from member.forms import MemberForm, LoginForm
+from member.models import Member, Consumer, Photographer
 
 
 def login_view(request):
@@ -46,3 +49,31 @@ def signup_view(request):
         return HttpResponse(status=405)
     context = {"form": form}
     return render(request, "signup.html", context)
+
+
+def mypage_view(request):
+    user = request.user
+    if request.method != 'GET':
+        return HttpResponse(status=405)
+    if not user.is_authenticated:
+        return HttpResponse(status=403)
+    context = {'member_name': user.username}
+
+    member = Member.objects.get(pk=user.id)
+    if member.member_type == 0:  # 소비자
+        context['member_type'] = '소비자'
+        consumer = Consumer.objects.get(pk=member.consumer_idx)
+
+        contracts = Contract.objects.filter(pk__in=consumer.contracts)
+        context['contracts'] = contracts
+    else:  # 사진작가
+        context['member_type'] = '사진작가'
+        photographer = Photographer.objects.get(pk=member.photographer_idx)
+
+        markets = Market.objects.filter(pk__in=photographer.markets)
+        context['markets'] = markets
+        context['contracts'] = {}
+        for market in markets:
+            context['contracts'][market.studio_name] = Contract.objects.filter(pk__in=market.contract_idxs)
+
+    return render(request, "member/mypage.html", context)
