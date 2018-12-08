@@ -1,57 +1,56 @@
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .navbar > a.logo {
-  font-family: 'Do Hyeon', sans-serif;
-  color: #0F5ED6 !important;
+    font-family: 'Do Hyeon', sans-serif;
+    color: #0F5ED6 !important;
 }
 
 .navbar {
-  background-color: white !important;
-  border-bottom: 2px solid #EEEEEE;
+    background-color: white !important;
+    border-bottom: 2px solid #EEEEEE;
 }
-
 
 /* login */
 
 .wrapper {
-	margin-top: 80px;
-  margin-bottom: 80px;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 .form-signin {
-  max-width: 380px;
-  padding: 15px 35px 45px;
-  margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .form-control {
-	  position: relative;
-	  font-size: 16px;
-	  height: auto;
-	  padding: 10px;
-		@include box-sizing(border-box);
-	}
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+@include box-sizing(border-box);
+}
 
-	input[type="text"] {
-	  margin-bottom: -1px;
-	  border-bottom-left-radius: 0;
-	  border-bottom-right-radius: 0;
-	}
+input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
 
-	input[type="password"] {
-	  margin-bottom: 20px;
-	  border-top-left-radius: 0;
-	  border-top-right-radius: 0;
-	}
+input[type="password"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .main_tag {
-  margin-left: 30px
+    margin-left: 30px
 }
 
 .main_markets {
-  margin-left: 30px
+    margin-left: 30px
 }
