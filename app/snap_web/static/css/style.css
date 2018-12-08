@@ -11,6 +11,14 @@ body {
     background-color: white !important;
     border-bottom: 2px solid #EEEEEE;
 }
+/* main */
+.main_tag {
+    margin-left: 30px
+}
+
+.main_markets {
+    margin-left: 30px
+}
 
 /* login */
 
@@ -47,10 +55,12 @@ input[type="password"] {
     border-top-right-radius: 0;
 }
 
-.main_tag {
-    margin-left: 30px
+/* signup */
+.sign-up > h2 {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
-.main_markets {
-    margin-left: 30px
+.sign-up select {
+    width: 70%;
 }
