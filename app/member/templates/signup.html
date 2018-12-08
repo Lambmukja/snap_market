@@ -4,10 +4,12 @@
 <div class="sign-up">
     <h2>회원가입</h2>
     <form name="signup" method="post" action="{% url 'member_signup' %}">{% csrf_token %}
-        {% for field in form %}
+        <div class="form-box">
+            {% for field in form %}
             <div class="form-label">
                 {{ field.label_tag }}
             </div>
+            <div class="form-field">
                 {{ field }}
                 {% if field.help_text %}
                   <div class="form-help-text">
@@ -17,8 +19,10 @@
                 {% for error in field.errors %}
                     <p style="color: red">{{ error }}</p>
                 {% endfor %}
-        {% endfor %}
-        <button class="btn btn-primary btn-block" type="submit">회원 가입</button>
+            </div>
+            {% endfor %}
+            <button class="btn btn-primary btn-block" type="submit">회원 가입</button>
+        </div>
     </form>
   </div>
 {% endblock %}

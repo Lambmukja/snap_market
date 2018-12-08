@@ -42,25 +42,70 @@ body {
     padding: 10px;
 @include box-sizing(border-box);
 }
-
-input[type="text"] {
+ .wrapper input[type="text"] {
     margin-bottom: -1px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-input[type="password"] {
+.wrapper input[type="password"] {
     margin-bottom: 20px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
 /* signup */
-.sign-up > h2 {
-    margin-top: 10px;
-    margin-bottom: 20px;
+.sign-up {
+    margin: auto;
+    width: 40%;
 }
 
-.sign-up select {
-    width: 70%;
+@media only screen and (max-width: 600px) {
+    .sign-up {
+        margin: auto;
+        width: 100%;
+    }
+}
+
+.sign-up > h2 {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.sign-up .form-box {
+    margin-bottom: 100px;
+}
+
+.form-label {
+    font-size: 18px;
+}
+
+.form-field {
+    margin-bottom: 30px;
+}
+
+.form-field ul {
+  list-style-type: none;
+  padding-inline-start: 0 !important;
+}
+
+.form-field > input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    color: #333;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid #aaa;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #0F5ED6;
 }
