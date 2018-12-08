@@ -2,7 +2,15 @@
 {% load staticfiles %}
 
 {% block content %}
-    {{ market.studio_name }} <br>
-    {{ market.location }} <br>
-    {{ market.posts }} <br>
+    <div class="col">
+        <h2>{{ market.studio_name }}</h2>
+        위치: {{ market.location }} <br>
+
+        태그:
+        {% for tag in tags %}
+            {{ tag.tag }} &nbsp;
+        {% endfor %}
+        <br><br>
+        {{ market.posts }} <br>
+    </div>
 {% endblock %}
