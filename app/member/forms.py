@@ -27,7 +27,7 @@ class MemberForm(UserCreationForm):
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='아이디', max_length=255)
-    password = forms.CharField(label='비밀번호', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label='비밀번호', widget=forms.PasswordInput(), max_length=255)
 
     def clean(self):
         username = self.cleaned_data.get('username')
