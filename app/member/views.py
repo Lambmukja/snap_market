@@ -77,3 +77,7 @@ def mypage_view(request):
             context['contracts'][market.studio_name] = Contract.objects.filter(pk__in=market.contract_idxs)
 
     return render(request, "member/mypage.html", context)
+
+
+def mypage_add_market_view(request):
+    pass
