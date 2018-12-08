@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 
 import member
+from market.models import Market
 from member.models import Member
 
 
@@ -44,3 +45,10 @@ class LoginForm(forms.Form):
                 "아이디 혹은 비밀번호가 일치하지 않습니다."
             )
         return self.cleaned_data
+
+
+class MarketForm(forms.Form):
+    class Meta:
+        model = Market
+        fields = ('studio_name', 'posts', 'working_time', 'costs',
+                  'kakao_id', 'tags', 'phone', 'photo')

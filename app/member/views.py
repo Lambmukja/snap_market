@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 from contract.models import Contract
 from market.models import Market
-from member.forms import MemberForm, LoginForm
+from member.forms import MemberForm, LoginForm, MarketForm
 from member.models import Member, Consumer, Photographer
 
 
@@ -80,4 +80,12 @@ def mypage_view(request):
 
 
 def mypage_add_market_view(request):
-    pass
+    if request.method == 'POST':
+        form = MarketForm(data=request.POST)
+        # TODO: form에 등록된 것 DB에 저장하기
+    elif request.method == 'GET':
+        form = MarketForm()
+    else:
+        return HttpResponse(status=405)
+    context = {"form": form}
+    return render(request, "member/mypage_add_market.html", context)
