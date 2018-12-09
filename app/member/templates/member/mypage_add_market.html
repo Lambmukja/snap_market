@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form name="signup" method="post" action="{% url 'member_mypage_new_market' %}">{% csrf_token %}
+    <form name="market_add" method="post" action="{% url 'member_mypage_new_market' %}">{% csrf_token %}
         <div class="form-box">
             <div class="form-box">
                 {% for field in form %}
@@ -10,18 +10,13 @@
                     </div>
                     <div class="form-field">
                         {{ field }}
-                        {% if field.help_text %}
-                            <div class="form-help-text">
-                                <small style="color: grey">{{ field.help_text }}</small>
-                            </div>
-                        {% endif %}
                         {% for error in field.errors %}
                             <p style="color: red">{{ error }}</p>
                         {% endfor %}
                     </div>
                 {% endfor %}
-                <button class="btn btn-primary btn-block" type="submit">마켓 등록</button>
             </div>
         </div>
+        <button class="btn btn-primary btn-block" type="submit">마켓 등록</button>
     </form>
 {% endblock %}

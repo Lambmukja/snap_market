@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 import member
 from market.models import Market
 from member.models import Member
+from tag.models import Tag
 
 
 class MemberForm(UserCreationForm):
@@ -48,7 +49,20 @@ class LoginForm(forms.Form):
 
 
 class MarketForm(forms.Form):
-    class Meta:
-        model = Market
-        fields = ('studio_name', 'posts', 'working_time', 'costs',
-                  'kakao_id', 'tags', 'phone', 'photo')
+    studio_name = forms.CharField(label='스튜디오 이름', max_length=255)
+    posts = forms.CharField(label='게시글', widget=forms.Textarea, required=False)
+    costs = forms.IntegerField(label='가격', required=False)
+    photo = forms.ImageField(label='홍보사진', required=False)
+    kakao_id = forms.CharField(label='카카오톡 아이디', required=False)
+    tags = forms.MultipleChoiceField(
+        label='태그',
+        choices=[(ele.pk, ele.tag) for ele in Tag.objects.all()],
+        widget=forms.CheckboxSelectMultiple(),
+        required=False,
+    )
+
+    def clean(self):
+        studio_name = self.cleaned_data.get('studio_name')
+        if Market.objects.filter(studio_name__exact=studio_name):
+            self.add_error('studio_name', "중복된 스튜디오 이름입니다.")
+        return self.cleaned_data

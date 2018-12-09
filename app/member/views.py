@@ -83,6 +83,10 @@ def mypage_add_market_view(request):
     if request.method == 'POST':
         form = MarketForm(data=request.POST)
         # TODO: form에 등록된 것 DB에 저장하기
+        if form.is_valid():
+            form.save()
+
+            return redirect("member_mypage")
     elif request.method == 'GET':
         form = MarketForm()
     else:
