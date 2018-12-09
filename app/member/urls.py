@@ -5,7 +5,6 @@ from member.views import (
     login_view,
     logout_view,
     mypage_view,
-    mypage_add_market_view,
 )
 
 urlpatterns = [
@@ -13,5 +12,5 @@ urlpatterns = [
     path('login/', login_view, name='member_login'),
     path('logout/', logout_view, name='member_logout'),
     path('mypage/', mypage_view, name='member_mypage'),
-    path('mypage/new_market/', mypage_add_market_view, name='member_mypage_new_market'),
+
 ]

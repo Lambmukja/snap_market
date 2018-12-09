@@ -5,9 +5,8 @@ from django.shortcuts import render, redirect
 
 from contract.models import Contract
 from market.models import Market
-from member.forms import MemberForm, LoginForm, MarketForm
+from member.forms import MemberForm, LoginForm
 from member.models import Member, Consumer, Photographer
-from tag.models import Tag
 
 
 def login_view(request):
@@ -78,35 +77,3 @@ def mypage_view(request):
             context['contracts'][market.studio_name] = Contract.objects.filter(pk__in=market.contract_idxs)
 
     return render(request, "member/mypage.html", context)
-
-
-def mypage_add_market_view(request):
-    if request.method == 'POST':
-        user = request.user
-        form = MarketForm(data=request.POST, files=request.FILES)
-        # TODO: form에 등록된 것 DB에 저장하기
-        if form.is_valid():
-            market = form.save()
-            tags = form.cleaned_data.get('tags')
-            print(tags)
-            tags = [int(tag) for tag in tags]
-            for tag_idx in tags:
-                tag = Tag.objects.get(pk=tag_idx)
-                tag.reference += 1
-                tag.save()
-
-            market.tags = tags
-            market.contract_idxs = []
-            member = Member.objects.get(pk=user.id)
-            photographer = Photographer.objects.get(pk=member.photographer_idx)
-            photographer.markets.append(market.pk)
-            photographer.save()
-            market.photographer_idx = photographer.pk
-            market.save()
-            return redirect("member_mypage")
-    elif request.method == 'GET':
-        form = MarketForm()
-    else:
-        return HttpResponse(status=405)
-    context = {"form": form}
-    return render(request, "member/mypage_add_market.html", context)
