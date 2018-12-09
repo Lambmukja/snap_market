@@ -11,6 +11,9 @@
             {{ tag.tag }} &nbsp;
         {% endfor %}
         <br><br>
+        {% if market.photo %}
+            <img src="{{ market.photo.url }}"> <br>
+        {% endif %}
         {{ market.posts }} <br>
     </div>
 {% endblock %}
