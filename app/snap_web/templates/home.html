@@ -31,7 +31,11 @@
         <div class="item col-xs-4 col-lg-4">
             <div class="card">
                 <div class="thumbnail">
-                    <img class="list-image" src={{ post.market_photo.url }} />
+                    {% if post.market_photo %}
+                        <img class="list-image" src={{ post.market_photo.url }} />
+                    {% else %}
+                        <img class="list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                    {% endif %}
                 </div>
                 <div class="caption">
                     <h2 class="item-title">
