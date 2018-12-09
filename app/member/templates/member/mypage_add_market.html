@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form name="market_add" method="post" action="{% url 'member_mypage_new_market' %}">{% csrf_token %}
+    <form name="market_add" method="post" action="{% url 'member_mypage_new_market' %}"
+          enctype='multipart/form-data'>{% csrf_token %}
         <div class="form-box">
             <div class="form-box">
                 {% for field in form %}
