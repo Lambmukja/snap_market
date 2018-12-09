@@ -11,16 +11,31 @@ body {
     background-color: white !important;
     border-bottom: 2px solid #EEEEEE;
 }
-/* main */
+
+/* ======== main ======== */
 .main_tag {
-    margin-left: 30px
+    margin: 30px 0;
+    text-align: center;
+    color: #0F5ED6;
+    font-weight: bold;
 }
 
-.main_markets {
-    margin-left: 30px
+.thumbnail
+{
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
 }
 
-/* login */
+.list-group-image {
+    width: 100%;
+    height: auto;
+}
+
+
+/* ======== login ======== */
 
 .wrapper {
     margin-top: 80px;
@@ -54,7 +69,8 @@ body {
     border-top-right-radius: 0;
 }
 
-/* signup */
+
+/* ======== signup ======== */
 .sign-up {
     margin: auto;
     width: 40%;
