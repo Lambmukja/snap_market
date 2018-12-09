@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form name="market_add" method="post" action="{% url 'market_add' %}"
+          enctype='multipart/form-data'>{% csrf_token %}
+        <div class="form-box">
+            <div class="form-box">
+                {% for field in form %}
+                    <div class="form-label">
+                        {{ field.label_tag }}
+                    </div>
+                    <div class="form-field">
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">마켓 등록</button>
+    </form>
+{% endblock %}
