@@ -5,3 +5,4 @@ flake8
 Faker
 model_mommy
 Pillow
+WhiteNoise
