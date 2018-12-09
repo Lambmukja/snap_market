@@ -26,15 +26,21 @@
 </div>
 
 <div class="main_markets">
-    <div class="row list-group">
+    <div class="row">
         {% for post in posts %}
         <div class="item col-xs-4 col-lg-4">
-            <div class="thumbnail">
-                <img class="list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-            </div>
-            <div class="caption">
-                <h2><a href={% url "market_post" post.market_id %}>{{ post.market_name }}</a></h2>
-                {{ post.market_post }}
+            <div class="card">
+                <div class="thumbnail">
+                    <img class="list-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                </div>
+                <div class="caption">
+                    <h2 class="item-title">
+                        <a href={% url "market_post" post.market_id %}>{{ post.market_name }}</a>
+                    </h2>
+                    <div class="item-desc">
+                        {{ post.market_post }}
+                    </div>
+                </div>
             </div>
         </div>
         {% endfor %}
