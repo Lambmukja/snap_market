@@ -10,6 +10,7 @@
     {% elif member_type == '사진작가' %}
         <h1>사진작가 {{ member_name }}님!</h1>
         <h2>내 사진마켓</h2>
+        <a href={% url "market_add" %}>사진마켓 추가하기</a> <br>
         {% for market in markets %}
             <a href={% url "market_post" market.pk %}>{{ market.studio_name }}</a><br>
         {% endfor %}
