@@ -20,7 +20,14 @@ def add_new_market_view(request):
         form = MarketForm(data=request.POST, files=request.FILES)
         # TODO: form에 등록된 것 DB에 저장하기
         if form.is_valid():
-            market = form.save()
+            market = form.save(commit=False)
+            photo = market.photo
+            market.photo = None
+            market.save()
+
+            # To get pk of market at image saving
+            market.photo = photo
+            market.save()
             tags = form.cleaned_data.get('tags')
             print(tags)
             tags = [int(tag) for tag in tags]

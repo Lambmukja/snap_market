@@ -5,7 +5,7 @@ from django.db import models
 
 
 def get_image_path(instance, filename):
-    return os.path.join(settings.MEDIA_ROOT, instance.studio_name, filename)
+    return os.path.join(settings.MEDIA_ROOT, f"market_{instance.pk:03d}", filename)
 
 
 # Create your models here.

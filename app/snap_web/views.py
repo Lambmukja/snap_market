@@ -14,6 +14,7 @@ def home_view(request):
                 'market_id': market.pk,
                 'market_name': market.studio_name,
                 'market_post': market.posts,
+                'market_photo': market.photo,
             })
         context = {'posts': posts, 'tags': tags}
         return render(request, "home.html", context)
