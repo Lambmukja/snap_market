@@ -16,4 +16,22 @@
         {% endif %}
         {{ market.posts }} <br>
     </div>
+    <br>
+    <div class="col">
+        {% if user_type == 'photographer' %}
+            <h3>소비자와의 계약정보: {{ total_contracts }}건</h3>
+            {% if photographer_contract %}
+                {% for username, contracts in photographer_contract.items %}
+                    {% for contract in contracts %}
+                        {{ username }}님 과의 {{ contract.id }}번 계약
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        {% elif user_type == 'consumer' %}
+            <h3>{{ user.username }}님의 {{ market.studio_name }}과의 계약정보: {{ consumer_contract|length }}건</h3>
+            {% for contract in consumer_contract %}
+                {{ contract.id }}번 계약 <br>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}
