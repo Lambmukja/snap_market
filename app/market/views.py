@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from contract.models import Contract
 from market.forms import MarketForm
 from market.models import Market
-from member.models import Member, Photographer
+from member.models import Member, Photographer, Consumer
 from tag.models import Tag
 
 
@@ -11,6 +12,32 @@ def market_post_view(request, pk):
     market = Market.objects.get(pk=pk)
     tags = Tag.objects.filter(pk__in=market.tags)
     context = {"market": market, "tags": tags}
+
+    user = request.user
+    if user.is_authenticated:
+        member = Member.objects.get(pk=user.id)
+        if member.member_type == 0:  # 소비자
+            context['user_type'] = 'consumer'
+            context['consumer_contract'] = []
+            consumer = Consumer.objects.get(pk=member.consumer_idx)
+            contract_idxs = consumer.contracts
+            for idx in contract_idxs:
+                contract = Contract.objects.get(pk=idx)
+                if contract.market_idx == market.pk:
+                    context['consumer_contract'].append(contract)
+
+        else:  # 사진작가
+            context['user_type'] = 'nothing'
+            if member.photographer_idx == market.photographer_idx:
+                context['user_type'] = 'photographer'
+                context['total_contracts'] = len(market.contract_idxs)
+                context['photographer_contract'] = {}
+                for idx in market.contract_idxs:
+                    contract = Contract.objects.get(pk=idx)
+                    consumer = Consumer.objects.get(pk=contract.consumer_idx)
+                    username = Member.objects.get(pk=consumer.member_idx).username
+                    context['photographer_contract'].setdefault(username, []).append(contract)
+
     return render(request, "market/post.html", context)
 
 
