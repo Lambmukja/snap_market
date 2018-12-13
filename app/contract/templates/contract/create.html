@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    대상 마켓: {{ market.studio_name }}<br>
+
+    계약 고객: {{ user.username }}<br>
+
+    가격: {{ market.costs }}원<br>
+
+    <form name="contract_create" method="post" action="{% url 'contract_create' market.pk %}">{% csrf_token %}
+    <div class="form-label">
+        {{ form.start_time.label_tag }}
+    </div>
+    <div class="form-field">
+        {{ form.start_time }}
+    </div>
+
+    <div class="form-label">
+        {{ form.end_time.label_tag }}
+    </div>
+    <div class="form-field">
+        {{ form.end_time }}
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">계약하기</button>
+    </form>
+{% endblock %}
