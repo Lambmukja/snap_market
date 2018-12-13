@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form name="contract_create" method="post" action="{% url 'contract_create' %}">{% csrf_token %}
+    <div class="form-label">
+        {{ form.start_time.label_tag }}
+    </div>
+    <div class="form-field">
+        {{ form.start_time }}
+    </div>
+
+    <div class="form-label">
+        {{ form.end_time.label_tag }}
+    </div>
+    <div class="form-field">
+        {{ form.end_time }}
+    </div>
+    </form>
+{% endblock %}

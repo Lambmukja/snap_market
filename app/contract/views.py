@@ -17,7 +17,7 @@ def mixin_contract_view(request, pk):
 def create_contract_view(request, market_id):
     form = ContractForm()
     member = Member.objects.get(pk=request.user.id)
-    consumer = Consumer.objects.get(pk=member.pk)
+    consumer = Consumer.objects.get(pk=member.consumer_idx)
     market = Market.objects.get(pk=market_id)
     if request.method == 'POST':
         form = ContractForm(data=request.POST)
