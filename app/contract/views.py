@@ -22,13 +22,17 @@ def create_contract_view(request, market_id):
     if request.method == 'POST':
         form = ContractForm(data=request.POST)
         if form.is_valid():
-            contract = form.save()
+            contract = form.save(commit=False)
+            contract.consumer_idx = consumer.pk
+            contract.market_idx = market.pk
+            contract.cost = market.costs
+            contract.save()
             consumer.contracts.append(contract.pk)
             market.contract_idxs.append(contract.pk)
 
             market.save()
             consumer.save()
-            return redirect("market_post")
+            return redirect("market_post", pk=market_id)
 
     context = {"form": form, "market": market, "consumer": consumer}
     return render(request, "contract/create.html", context)
