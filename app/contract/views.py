@@ -31,4 +31,4 @@ def create_contract_view(request, market_id):
             return redirect("market_post")
 
     context = {"form": form, "market": market, "consumer": consumer}
-    return render(request, "", context)
+    return render(request, "contract/create.html", context)

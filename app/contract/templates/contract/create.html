@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form name="contract_create" method="post" action="{% url 'contract_create' %}">{% csrf_token %}
+    <form name="contract_create" method="post" action="{% url 'contract_create' market.pk %}">{% csrf_token %}
     <div class="form-label">
         {{ form.start_time.label_tag }}
     </div>

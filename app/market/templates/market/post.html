@@ -6,7 +6,7 @@
         <div class="row">
             <h2>{{ market.studio_name }}</h2>
             {% if user_type == 'consumer' %}
-                <form action={% url "contract_create" market.pk %}>
+                <form action="{% url 'contract_create' market.pk %}" method="GET">
                     <input type="submit" value="계약하기"/>
                 </form>
             {% endif %}
