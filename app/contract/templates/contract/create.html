@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+    대상 마켓: {{ market.studio_name }}<br>
+
+    계약 고객: {{ user.username }}
+
     <form name="contract_create" method="post" action="{% url 'contract_create' market.pk %}">{% csrf_token %}
     <div class="form-label">
         {{ form.start_time.label_tag }}

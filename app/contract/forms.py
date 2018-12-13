@@ -17,4 +17,4 @@ class ContractForm(forms.ModelForm):
 
     class Meta:
         model = Contract
-        fields = ("consumer_idx", "market_idx", "start_time", "end_time")
+        fields = ("start_time", "end_time")
