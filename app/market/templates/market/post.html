@@ -3,7 +3,14 @@
 
 {% block content %}
     <div class="col">
-        <h2>{{ market.studio_name }}</h2>
+        <div class="row">
+            <h2>{{ market.studio_name }}</h2>
+            {% if user_type == 'consumer' %}
+                <form action={% url "contract_create" market.pk %}>
+                    <input type="submit" value="계약하기"/>
+                </form>
+            {% endif %}
+        </div>
         위치: {{ market.location }} <br>
 
         태그:
