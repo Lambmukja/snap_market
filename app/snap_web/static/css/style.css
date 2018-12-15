@@ -193,3 +193,20 @@ body {
     display: inline-block;
     margin: 5px;
 }
+.market-contract_info {
+    margin: 50px 10px;
+    padding: 30px 15px;
+    border: 1px solid #eee;
+}
+.market-contract_info > h5{
+    font-weight: bold;
+    color: #0F5ED6;
+}
+.market-card {
+    padding: 15px;
+    margin: 30px 5px;
+    background-color: #1162db;
+    color: #FFF;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 0px rgba(1, 1, 1, 0.34);
+}
