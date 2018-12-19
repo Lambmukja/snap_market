@@ -210,3 +210,28 @@ body {
     border-radius: 10px;
     box-shadow: 1px 1px 2px 0px rgba(1, 1, 1, 0.34);
 }
+
+/* ======== contract ======== */
+.contract-form > h1 {
+    font-weight: bold;
+    color: #0F5ED6;
+    margin: 1.3em 0;
+}
+.conctract-simpleinfo {
+    margin: 15px 0;
+    padding: 0 15px;
+    border: 1px solid #eee;
+}
+.conctract-simpleinfo > h5 {
+    margin: 15px 0;
+}
+.datetime-pick > h2 {
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+.contract-btn {
+    margin-top: 100px;
+    margin-bottom: 30px;
+    height: 60px;
+    font-size: 1.5em;
+}

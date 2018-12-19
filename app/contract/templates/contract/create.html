@@ -1,44 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-    대상 마켓: {{ market.studio_name }}<br>
-
-    계약 고객: {{ user.username }}<br>
-
-    가격: {{ market.costs }}원<br>
+<div class="contract-form">
+    <h1> 계약하기 </h1>
+    <h2> 계약 정보 </h2>
+    <div class="conctract-simpleinfo">
+        <h5> 마켓명 : {{ market.studio_name }} </h5>
+        <h5> 고객명 : {{ user.username }} </h5>
+        <h5> 가격 : {{ market.costs }}원 </h5>
+    </div>
 
     <form name="contract_create" method="post" action="{% url 'contract_create' market.pk %}">{% csrf_token %}
-    <div class="form-label">
-        {{ form.start_time.label_tag }}
-    </div>
-    <div class="form-field">
+        <!-- 숨긴 input. JS data 전달용 -->
         {{ form.start_time }}
-    </div>
-    
-    <div style="overflow:hidden;">
-    <div class="form-group">
-        <div class="row">
-            <div class="col-md-8">
-                <div id="datetimepicker12"></div>
+        {{ form.end_time }}
+
+        <div class="datetime-pick">
+            <h2>촬영 날짜</h2>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <div id="datepicker"></div>
+                </div>
+            </div>
+            <h2>촬영 희망 시간</h2>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5><i class="far fa-clock"></i> 시작 시간</h5>
+                        <div id="start_timepicker" name="timepicker"></div>
+                    </div>
+                    <div class="col-md-3 offset-md-2">
+                        <h5><i class="far fa-clock"></i> 종료 시간 </h5>
+                        <div id="finish_timepicker" name="timepicker"></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker12').datetimepicker({
-                inline: true,
-                sideBySide: true
-            });
-        });
-    </script>
-    </div>
-
-    <div class="form-label">
-        {{ form.end_time.label_tag }}
-    </div>
-    <div class="form-field">
-        {{ form.end_time }}
-    </div>
-    <button class="btn btn-primary btn-block" type="submit">계약하기</button>
+        <button class="btn btn-primary col-md-4 offset-md-4 contract-btn" type="submit">계약하기</button>
     </form>
+</div>
 {% endblock %}
