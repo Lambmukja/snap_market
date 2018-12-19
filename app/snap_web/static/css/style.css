@@ -235,3 +235,30 @@ body {
     height: 60px;
     font-size: 1.5em;
 }
+
+/* ======== market add ======== */
+.market-add > h1 {
+    font-weight: bold;
+    color: #0F5ED6;
+    margin-top: 1.3em;
+    margin-bottom: 1.5em;
+}
+.market-add .form-label {
+    font-size: 1.3em;
+    color: #000;
+    font-weight: lighter;
+}
+.form-field > textarea {
+    width: 100%;
+    border: 1px solid #aaa;
+}
+.form-field > input[type="file"] {
+    border-style: none !important;
+}
+
+.market-add-btn {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 60px;
+    font-size: 1.5em;
+}
