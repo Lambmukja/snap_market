@@ -157,3 +157,56 @@ body {
     margin-top: 30px;
     margin-bottom: 10px;
 }
+
+
+/* ======== market post ======== */
+.market-content {
+    margin: 30px 0;
+}
+
+.market-posts {
+    margin: 15px 0;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    background-color: #fafafa;
+}
+
+.market-info > h2 {
+    font-weight: bold;
+    color: #0F5ED6;
+}
+.market-info > div {
+    margin: 10px 0;
+}
+
+.market-image {
+    width: 100%;
+}
+
+.market-tags {
+    margin: 15px 0;
+    color: #11b3ff;
+}
+
+.market-tags > p {
+    display: inline-block;
+    margin: 5px;
+}
+.market-contract_info {
+    margin: 50px 10px;
+    padding: 30px 15px;
+    border: 1px solid #eee;
+}
+.market-contract_info > h5{
+    font-weight: bold;
+    color: #0F5ED6;
+}
+.market-card {
+    padding: 15px;
+    margin: 30px 5px;
+    background-color: #1162db;
+    color: #FFF;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 0px rgba(1, 1, 1, 0.34);
+}

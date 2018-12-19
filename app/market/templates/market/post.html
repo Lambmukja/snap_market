@@ -2,43 +2,67 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="col">
-        <div class="row">
-            <h2>{{ market.studio_name }}</h2>
-            {% if user_type == 'consumer' %}
-                <form action="{% url 'contract_create' market.pk %}" method="GET">
-                    <input type="submit" value="계약하기"/>
-                </form>
-            {% endif %}
-        </div>
-        위치: {{ market.location }} <br>
-
-        태그:
-        {% for tag in tags %}
-            {{ tag.tag }} &nbsp;
-        {% endfor %}
-        <br><br>
-        {% if market.photo %}
-            <img src="{{ market.photo.url }}"> <br>
-        {% endif %}
-        {{ market.posts }} <br>
-    </div>
-    <br>
-    <div class="col">
-        {% if user_type == 'photographer' %}
-            <h3>소비자와의 계약정보: {{ total_contracts }}건</h3>
-            {% if photographer_contract %}
-                {% for username, contracts in photographer_contract.items %}
-                    {% for contract in contracts %}
-                        {{ username }}님 과의 {{ contract.id }}번 계약
-                    {% endfor %}
-                {% endfor %}
-            {% endif %}
-        {% elif user_type == 'consumer' %}
-            <h3>{{ user.username }}님의 {{ market.studio_name }}과의 계약정보: {{ consumer_contract|length }}건</h3>
-            {% for contract in consumer_contract %}
-                {{ contract.id }}번 계약 <br>
+<div class="row market-content">
+    <div class="col-md-6 market-info">
+        <div class="market-tags">
+            {% for tag in tags %}
+            <p> #{{ tag.tag }} </p>
             {% endfor %}
+        </div>
+        <h2>{{ market.studio_name }}</h2>
+        <div class="market-location">
+            위치: {{ market.location }}
+        </div>
+        <div> <!-- 요일 정보는 안 입력했던가? -->
+            요일:
+        </div>
+        <div>
+            가능시간:
+        </div>
+        <div>
+            금액:
+        </div>
+
+        {% if user_type == 'consumer' %}
+            <form action="{% url 'contract_create' market.pk %}" method="GET">
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="계약하기"/>
+            </form>
+        {% endif %}
+        <div class="market-posts">
+        {{ market.posts }}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        {% if market.photo %}
+            <img class="market-image" src="{{ market.photo.url }}">
         {% endif %}
     </div>
+</div>
+
+<div class="market-contract_info">
+    {% if user_type == 'photographer' %}
+        <h5>소비자와의 계약정보: {{ total_contracts }}건</h5>
+        {% if photographer_contract %}
+            <div class="row">
+            {% for username, contracts in photographer_contract.items %}
+                {% for contract in contracts %}
+                <div class="col-md-4">
+                    <div class="market-card"> {{ username }}님 과의 {{ contract.id }}번 계약 </div>
+                </div>
+                {% endfor %}
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% elif user_type == 'consumer' %}
+        <h5>{{ user.username }}님의 {{ market.studio_name }} 계약정보: {{ consumer_contract|length }}건</h5>
+        <div class="row">
+        {% for contract in consumer_contract %}
+            <div class="col-md-4">
+                <div class="market-card"> {{ contract.id }}번 계약 </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
