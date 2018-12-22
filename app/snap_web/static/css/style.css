@@ -210,3 +210,55 @@ body {
     border-radius: 10px;
     box-shadow: 1px 1px 2px 0px rgba(1, 1, 1, 0.34);
 }
+
+/* ======== contract ======== */
+.contract-form > h1 {
+    font-weight: bold;
+    color: #0F5ED6;
+    margin: 1.3em 0;
+}
+.conctract-simpleinfo {
+    margin: 15px 0;
+    padding: 0 15px;
+    border: 1px solid #eee;
+}
+.conctract-simpleinfo > h5 {
+    margin: 15px 0;
+}
+.datetime-pick > h2 {
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+.contract-btn {
+    margin-top: 100px;
+    margin-bottom: 30px;
+    height: 60px;
+    font-size: 1.5em;
+}
+
+/* ======== market add ======== */
+.market-add > h1 {
+    font-weight: bold;
+    color: #0F5ED6;
+    margin-top: 1.3em;
+    margin-bottom: 1.5em;
+}
+.market-add .form-label {
+    font-size: 1.3em;
+    color: #000;
+    font-weight: lighter;
+}
+.form-field > textarea {
+    width: 100%;
+    border: 1px solid #aaa;
+}
+.form-field > input[type="file"] {
+    border-style: none !important;
+}
+
+.market-add-btn {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 60px;
+    font-size: 1.5em;
+}

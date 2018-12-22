@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="market-add">
+    <h1> 마켓 등록하기 </h1>
     <form name="market_add" method="post" action="{% url 'market_add' %}"
           enctype='multipart/form-data'>{% csrf_token %}
         <div class="form-box">
             <div class="form-box">
                 {% for field in form %}
-                    <div class="form-label">
-                        {{ field.label_tag }}
-                    </div>
-                    <div class="form-field">
-                        {{ field }}
-                        {% for error in field.errors %}
-                            <p style="color: red">{{ error }}</p>
-                        {% endfor %}
+                    <div class="row">
+                        <div class="form-label col-md-2 offset-md-1">
+                            {{ field.label_tag }}
+                        </div>
+                        <div class="form-field col-md-8">
+                            {{ field }}
+                            {% for error in field.errors %}
+                                <p style="color: red">{{ error }}</p>
+                            {% endfor %}
+                        </div>
                     </div>
                 {% endfor %}
             </div>
         </div>
-        <button class="btn btn-primary btn-block" type="submit">마켓 등록</button>
+        <button class="btn btn-primary col-md-4 offset-md-4 market-add-btn" type="submit">마켓 등록</button>
     </form>
 {% endblock %}
