@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="my_page">
+    <div class="my_page">
     {% if member_type == '소비자' %}
         <h1>소비자 {{ member_name }}님!</h1>
         <h2>계약정보</h2>
         {% for contract in contracts %}
-            {{ contract.id }}
+            <a href="{% url 'contract_page' contract.id %}">
+                {{ contract.id }}번 계약 <br>
+            </a>
         {% endfor %}
     {% elif member_type == '사진작가' %}
         <h1>사진작가 {{ member_name }}님!</h1>
@@ -38,9 +40,22 @@
         <div class="my_page-title">
             <h3>계약정보</h3>
         </div>
-        {% for contract in contracts %}
-            {{ contract.id }}
+        {% for studio_name, studio_contracts in contracts.items %}
+            <div class="my_page-title">
+                <h4>{{ studio_name }}</h4>
+            </div>
+            {% if not studio_contracts %}
+                계약건 없음<br>
+            {% else %}
+                계약 건: {{ studio_contracts|length }}건<br>
+                {% for studio_contract in studio_contracts %}
+                    <a href="{% url 'contract_page' studio_contract.id %}">
+                        {{ studio_contract.id }}번 계약<br>
+                    </a>
+                {% endfor %}
+                <br>
+            {% endif %}
         {% endfor %}
-
     {% endif %}
+    </div>
 {% endblock %}
