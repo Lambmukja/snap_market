@@ -25,6 +25,7 @@ urlpatterns = [
     path('member/', include('member.urls')),
     path('market/', include('market.urls')),
     path('contract/', include('contract.urls')),
+    path('tag/', include('tag.urls')),
     path('api/', include('snap_web.api.urls')),
 ]
 
