@@ -6,12 +6,18 @@ from market.models import Market
 from member.models import Member, Consumer
 
 
-def mixin_contract_view(request, pk):
+def contract_page_view(request, pk):
     contract = Contract.objects.get(pk=pk)
-    if request.method == 'GET':
+    market = Market.objects.get(pk=contract.market_idx)
+    member = Member.objects.get(consumer_idx=contract.consumer_idx)
+    if request.method != 'GET':
         pass
-    context = {"contract": contract}
-    return render(request, "", context)
+    context = {
+        "contract": contract,
+        "market": market,
+        "consumer_name": member.username,
+    }
+    return render(request, "contract/page.html", context)
 
 
 def create_contract_view(request, market_id):

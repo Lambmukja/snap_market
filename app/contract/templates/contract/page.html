@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    계약번호: {{ contract.id }}<br>
+    마켓이름: <a href={% url 'market_post' contract.market_idx %}>{{ market.studio_name }}</a><br>
+    마켓 카카오톡 아이디: {{ market.kakao_id }}<br>
+    마켓 연락번호: {{ market.phone }}<br>
+    위치: {{ market.location }}<br>
+<br>
+    계약금액: {{ contract.cost }}<br>
+
+    대상고객: {{ consumer_name }}님<br>
+    계약시간:<br>
+        * 시작시간: {{ contract.start_time }}<br>
+        * 종료시간: {{ contract.end_time }}<br>
+
+{% endblock %}
