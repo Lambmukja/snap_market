@@ -8,14 +8,15 @@ from review.forms import ReviewForm
 
 def review_add_view(request, pk):
     user = request.user
-    member = Member.objects.get(pk=user.id)
-    market = Market.objects.get(pk=pk)
-    form = ReviewForm()
-
     if not user.is_authenticated:
         return HttpResponse(status=403)
+
+    member = Member.objects.get(pk=user.id)
     if member.member_type != 0:
         return HttpResponse(status=401)
+
+    market = Market.objects.get(pk=pk)
+    form = ReviewForm()
 
     if request.method == 'POST':
         form = ReviewForm(data=request.POST)

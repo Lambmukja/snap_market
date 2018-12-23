@@ -17,10 +17,7 @@ def market_post_view(request, pk):
     if len(reviews):
         avg_stars = f"{(market.stars / len(reviews)):.1f}"
 
-    is_consumer = False
-
     context = {
-        "is_consumer": is_consumer,
         "market": market,
         "tags": tags,
         "reviews": reviews,

@@ -36,3 +36,13 @@ $(function () {
         console.log(finish_time.value);
     });
 });
+
+$(function () {
+     $('#recommend-filter').on('change', function () {
+         var url = $(this).val();
+         if (url) {
+             window.location = url;
+         }
+         return false;
+     });
+});

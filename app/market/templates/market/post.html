@@ -51,42 +51,46 @@
     </div>
 </div>
 
+{% if user_type == 'photographer' %}
 <div class="market-contract_info">
-    {% if user_type == 'photographer' %}
-        <h5>소비자와의 계약정보: {{ total_contracts }}건</h5>
-        {% if photographer_contract %}
-            <div class="row">
-            {% for username, contracts in photographer_contract.items %}
-                {% for contract in contracts %}
-                <div class="col-md-4">
-                    <a href="{% url 'contract_page' contract.id %}" class="market-card btn-block">
-                        {{ username }}님 과의 {{ contract.id }}번 계약
-                    </a>
-                </div>
-                {% endfor %}
-            {% endfor %}
-            </div>
-        {% endif %}
-    {% elif user_type == 'consumer' %}
-        <h5>{{ user.username }}님의 {{ market.studio_name }} 계약정보: {{ consumer_contract|length }}건</h5>
+    <h5>소비자와의 계약정보: {{ total_contracts }}건</h5>
+    {% if photographer_contract %}
         <div class="row">
-        {% for contract in consumer_contract %}
+        {% for username, contracts in photographer_contract.items %}
+            {% for contract in contracts %}
             <div class="col-md-4">
                 <a href="{% url 'contract_page' contract.id %}" class="market-card btn-block">
-                    {{ contract.id }}번 계약
+                    {{ username }}님 과의 {{ contract.id }}번 계약
                 </a>
             </div>
+            {% endfor %}
         {% endfor %}
         </div>
     {% endif %}
 </div>
+{% elif user_type == 'consumer' %}
+<div class="market-contract_info">
+    <h5>{{ user.username }}님의 {{ market.studio_name }} 계약정보: {{ consumer_contract|length }}건</h5>
+    <div class="row">
+    {% for contract in consumer_contract %}
+        <div class="col-md-4">
+            <a href="{% url 'contract_page' contract.id %}" class="market-card btn-block">
+                {{ contract.id }}번 계약
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endif %}
+
 
 <div class="review">
     <div class="review-title">
         <h3>{{ market.studio_name }}에 대한 리뷰 : {{ reviews|length }}건</h3>
     </div>
-    <a href="{% url "review_add" market.id %}"> <i class="fas fa-pencil-alt"></i> 리뷰 작성하기</a>
-
+    {% if user_type == 'consumer' %}
+        <a href="{% url "review_add" market.id %}"> <i class="fas fa-pencil-alt"></i> 리뷰 작성하기</a>
+    {% endif %}
     {% for review in reviews %}
     <div class="card text-black bg-light mb-3">
       <div class="card-header">{{ review.reviewer_name }}님의 리뷰</div>
