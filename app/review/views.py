@@ -32,15 +32,3 @@ def review_add_view(request, pk):
 
     context = {'form': form, 'market': market}
     return render(request, 'review/add.html', context=context)
-
-
-def review_edit_view(request, pk):
-    pass
-
-
-def review_retrieve_view(request, pk):
-    pass
-
-
-def review_market_view(request, pk):
-    pass
