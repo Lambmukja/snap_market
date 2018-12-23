@@ -16,7 +16,7 @@ class Market(models.Model):
     posts = models.TextField("게시글", null=True, blank=True)
     # TODO: 나중에 다시 JSONField로 할것. ex) {'월': [(09:00,10:00 <- datetime), ...], ...}
     # working_time = JSONField("영업시간", null=True, blank=True)
-    working_time = models.TextField("영업시간", default="")
+    working_time = models.TextField("영업시간", default="", blank=True)
     costs = models.PositiveIntegerField("가격")
     kakao_id = models.CharField("카카오톡 ID", max_length=50, blank=True, null=True)
     photographer_idx = models.PositiveSmallIntegerField("사진작가 idx", null=True, blank=True)
