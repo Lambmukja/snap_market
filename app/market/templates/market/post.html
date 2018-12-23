@@ -78,7 +78,9 @@
 </div>
 
     <h1>{{ market.studio_name }}에 대한 리뷰: {{ reviews|length }}건</h1>
-    <p><a href="{% url "review_add" market.id %}">리뷰 작성하기</a></p>
+    {% if is_consumer %}
+        <p><a href="{% url "review_add" market.id %}">리뷰 작성하기</a></p>
+    {% endif %}
     {% for review in reviews %}
         <p>{{ review.reviewer_name }}님의 리뷰 | 별점: {{ review.stars }}</p>
         <p>{{ review.review }}</p>
