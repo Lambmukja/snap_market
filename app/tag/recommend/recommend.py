@@ -14,7 +14,6 @@ def recommend(user_tags: List[int]):
     :return: return list of each market name and market's score
     :rtype: list[tuple]
     """
-    tags = Tag.objects.all()
     markets = Market.objects.all()
     user_tag_ids = set(user_tags)
     result = list()
@@ -29,6 +28,7 @@ def recommend(user_tags: List[int]):
             continue
         weights = [tag.weight for tag in filtered_tags]
         avg_weight = statistics.mean(weights)
+
         # calculate match_rate
         match_rate = len(matched_tags) / len(user_tags)
         score = Config.ALPHA * avg_weight + Config.GAMMA * match_rate

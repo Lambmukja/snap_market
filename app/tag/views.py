@@ -88,5 +88,11 @@ def tag_recommend_view(request):
             'market_photo': market.photo,
         })
 
-    context = {'posts': posts, 'tags': tags, 'cur_tag': "추천", 'is_consumer': is_consumer}
+    context = {
+        'posts': posts,
+        'tags': tags,
+        'cur_tag': "추천",
+        'is_consumer': is_consumer,
+        'search': search,
+    }
     return render(request, "home.html", context)
