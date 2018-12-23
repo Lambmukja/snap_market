@@ -10,17 +10,14 @@ from tag.models import Tag
 
 
 def market_post_view(request, pk):
-    user = request.user
-
     market = Market.objects.get(pk=pk)
-    member = Member.objects.get(pk=user.id)
     tags = Tag.objects.filter(pk__in=market.tags)
     reviews = Review.objects.filter(market_idx=pk)
     avg_stars = 0
     if len(reviews):
         avg_stars = f"{(market.stars / len(reviews)):.1f}"
 
-    is_consumer = True if member.member_type == 0 else False
+    is_consumer = False
 
     context = {
         "is_consumer": is_consumer,
@@ -30,7 +27,10 @@ def market_post_view(request, pk):
         "avg_stars": avg_stars,
     }
 
+    user = request.user
     if user.is_authenticated:
+        member = Member.objects.get(pk=user.id)
+        is_consumer = True if member.member_type == 0 else False
         if is_consumer:  # 소비자
             context['user_type'] = 'consumer'
             context['consumer_contract'] = []
