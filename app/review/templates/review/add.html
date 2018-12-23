@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>리뷰 작성하기</h2>
+    <p>마켓: {{ market.studio_name }}</p>
+    <p>작성자: {{ user.username }}</p>
+    <form name="review_add" method="POST" action="{% url 'review_add' market.id %}">{% csrf_token %}
+        <div class="form-box">
+            <div class="form-label col-md-2">
+                {{ form.stars.label_tag }}
+            </div>
+            <div class="form-field col-md-8">
+                {{ form.stars }}
+            </div>
+
+            <div class="form-label col-md-2">
+                {{ form.review.label_tag }}
+            </div>
+            <div class="form-field col-md-8">
+                {{ form.review }}
+            </div>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">저장하기</button>
+    </form>
+    <form action="{% url 'market_post' market.id %}" method="GET">
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="취소"/>
+    </form>
+{% endblock %}
