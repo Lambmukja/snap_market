@@ -4,19 +4,30 @@
     <div class="my_page">
     {% if member_type == '소비자' %}
         <h1>소비자 {{ member_name }}님!</h1>
-        <h2>관심태그</h2>
-        <a href={% url "favorite_edit" %}>
-        수정하기<br>
-        </a>
-        {% for tag in favorite %}
-            #{{ tag.tag }} <br>
-        {% endfor %}
-        <h2>계약정보</h2>
+        <div class="my_page-title">
+            <h2>관심태그</h2>
+        </div>
+        <a href={% url "favorite_edit" %}> <i class="fas fa-edit"></i>수정하기 </a>
+        <div class="row">
+            {% for tag in favorite %}
+            <div class="my_page-tag col-md-2">
+                #{{ tag.tag }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="my_page-title">
+            <h2>계약정보</h2>
+        </div>
+        <div class="row">
         {% for contract in contracts %}
-            <a href="{% url 'contract_page' contract.id %}">
-                {{ contract.id }}번 계약 <br>
-            </a>
+            <div class="col-md-4">
+                <a href="{% url 'contract_page' contract.id %}" class="market-card my_page-card btn-block">
+                    {{ contract.id }}번 계약
+                </a>
+            </div>
         {% endfor %}
+
     {% elif member_type == '사진작가' %}
         <h1>사진작가 {{ member_name }}님!</h1>
         <div class="my_page-title">
@@ -52,15 +63,18 @@
                 <h4>{{ studio_name }}</h4>
             </div>
             {% if not studio_contracts %}
-                계약건 없음<br>
+                <p> 계약건 없음 </p>
             {% else %}
-                계약 건: {{ studio_contracts|length }}건<br>
+                <p> 계약 건: {{ studio_contracts|length }}건</p>
+                <div class="row">
                 {% for studio_contract in studio_contracts %}
-                    <a href="{% url 'contract_page' studio_contract.id %}">
-                        {{ studio_contract.id }}번 계약<br>
-                    </a>
+                    <div class="col-md-4">
+                        <a href="{% url 'contract_page' studio_contract.id %}"  class="market-card my_page-card btn-block">
+                            {{ studio_contract.id }}번 계약
+                        </a>
+                    </div>
                 {% endfor %}
-                <br>
+                </div>
             {% endif %}
         {% endfor %}
     {% endif %}
