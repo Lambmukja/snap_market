@@ -75,6 +75,5 @@ def mypage_view(request):
         context['contracts'] = {}
         for market in markets:
             context['contracts'][market.studio_name] = Contract.objects.filter(pk__in=market.contract_idxs)
-        print(context['contracts'])
 
     return render(request, "member/mypage.html", context)
