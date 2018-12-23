@@ -185,7 +185,12 @@ body {
     padding: 10px;
     background-color: #fafafa;
 }
-
+.star-point {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 3px 0;
+    text-align: center;
+}
 .market-info > h2 {
     font-weight: bold;
     color: #0F5ED6;
@@ -307,4 +312,29 @@ body {
     color: #0F5ED6;
     margin-top: 1.3em;
     margin-bottom: 30px;
+}
+
+/* ======== review ======== */
+.review-title {
+    border-bottom: 1px solid #aaa;
+}
+.review {
+    margin: 50px 0;
+}
+.review-info {
+    margin: 30px 0;
+}
+.review-edit > h2 {
+    font-weight: bold;
+    color: #0F5ED6;
+    margin-top: 1.3em;
+    margin-bottom: 30px;
+}
+.review-edit select {
+    width: 100%;
+}
+
+.review-edit textarea {
+    width: 100%;
+    border: 2px solid #dadada;
 }
