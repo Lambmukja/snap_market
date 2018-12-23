@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 
 import member
-from member.models import Member
+from member.models import Member, Consumer
+from tag.models import Tag
 
 
 class MemberForm(UserCreationForm):
@@ -44,3 +45,22 @@ class LoginForm(forms.Form):
                 "아이디 혹은 비밀번호가 일치하지 않습니다."
             )
         return self.cleaned_data
+
+
+class ConsumerFavoriteForm(forms.ModelForm):
+    favorite = forms.MultipleChoiceField(
+        label='관심태그',
+        choices=[(ele.pk, ele.tag) for ele in Tag.objects.all().order_by('id')],
+        widget=forms.CheckboxSelectMultiple(),
+        required=False,
+    )
+
+    def clean(self):
+        favorite = self.cleaned_data.get('favorite')
+        self.cleaned_data['favorite'] = [int(tag) for tag in favorite]
+
+        return self.cleaned_data
+
+    class Meta:
+        model = Consumer
+        fields = ('favorite',)

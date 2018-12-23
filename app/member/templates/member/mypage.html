@@ -4,6 +4,13 @@
     <div class="my_page">
     {% if member_type == '소비자' %}
         <h1>소비자 {{ member_name }}님!</h1>
+        <h2>관심태그</h2>
+        <a href={% url "favorite_edit" %}>
+        수정하기<br>
+        </a>
+        {% for tag in favorite %}
+            #{{ tag.tag }} <br>
+        {% endfor %}
         <h2>계약정보</h2>
         {% for contract in contracts %}
             <a href="{% url 'contract_page' contract.id %}">
