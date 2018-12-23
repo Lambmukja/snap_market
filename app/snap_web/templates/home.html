@@ -19,7 +19,7 @@
     <div class="row">
     {% for tag in tags %}
         <div class="col">
-            #{{ tag.tag }}
+            <a href={% url "tag_search" tag.id %}>#{{ tag.tag }}</a>
         </div>
     {% endfor %}
     </div>
