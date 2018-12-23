@@ -56,7 +56,6 @@ def add_new_market_view(request):
             market.photo = photo
             market.save()
             tags = form.cleaned_data.get('tags')
-            print(tags)
             tags = [int(tag) for tag in tags]
             for tag_idx in tags:
                 tag = Tag.objects.get(pk=tag_idx)
