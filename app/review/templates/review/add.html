@@ -1,28 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="review-edit">
     <h2>리뷰 작성하기</h2>
-    <p>마켓: {{ market.studio_name }}</p>
-    <p>작성자: {{ user.username }}</p>
+    <div class="review-info row">
+        <div class="offset-md-1">
+            <h5>마켓 : {{ market.studio_name }}</h5>
+            <h5>작성자 : {{ user.username }}</h5>
+        </div>
+    </div>
     <form name="review_add" method="POST" action="{% url 'review_add' market.id %}">{% csrf_token %}
-        <div class="form-box">
-            <div class="form-label col-md-2">
+        <div class="form-box row">
+            <div class="form-label col-md-2 offset-md-1">
                 {{ form.stars.label_tag }}
             </div>
             <div class="form-field col-md-8">
                 {{ form.stars }}
             </div>
 
-            <div class="form-label col-md-2">
+            <div class="form-label col-md-2 offset-md-1">
                 {{ form.review.label_tag }}
             </div>
             <div class="form-field col-md-8">
                 {{ form.review }}
             </div>
         </div>
-        <button class="btn btn-primary btn-block" type="submit">저장하기</button>
+        <div class="row">
+            <div class="col-md-3 offset-md-3">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">저장하기</button>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-lg btn-light btn-block" href="{% url 'market_post' market.id %}">취소</a>
+            </div>
+        </div>
     </form>
-    <form action="{% url 'market_post' market.id %}" method="GET">
-        <input class="btn btn-lg btn-primary btn-block" type="submit" value="취소"/>
-    </form>
+</div>
 {% endblock %}
