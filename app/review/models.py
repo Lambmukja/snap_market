@@ -9,6 +9,7 @@ CHOICES = {
 class Review(models.Model):
     # 소비자 idx
     reviewer_idx = models.PositiveSmallIntegerField(blank=False, null=False)
+    reviewer_name = models.CharField(max_length=150, blank=False, null=False, default='익명')
     market_idx = models.PositiveSmallIntegerField(blank=False, null=False)
     stars = models.PositiveSmallIntegerField(
         '별점', choices=CHOICES['별점'],

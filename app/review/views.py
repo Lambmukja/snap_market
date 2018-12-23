@@ -23,6 +23,7 @@ def review_add_view(request, pk):
             review = form.save(commit=False)
             review.market_idx = market.id
             review.reviewer_idx = member.consumer_idx
+            review.reviewer_name = member.username
             return redirect('market_post', pk=pk)
 
     context = {'form': form, 'market': market}
