@@ -1,17 +1,29 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
-    계약번호: {{ contract.id }}<br>
-    마켓이름: <a href={% url 'market_post' contract.market_idx %}>{{ market.studio_name }}</a><br>
-    마켓 카카오톡 아이디: {{ market.kakao_id }}<br>
-    마켓 연락번호: {{ market.phone }}<br>
-    위치: {{ market.location }}<br>
-<br>
-    계약금액: {{ contract.cost }}<br>
+<div class="contract-view">
+    <h1> 계약 정보 </h1>
+    <img src="{% static 'img/london.jpg' %}" class="img-fluid">
+    <div class="contract-info">
+        <h3> 계약번호 : {{ contract.id }} </h3>
+        <div class="contract-simpleinfo">
+            <h5> 마켓이름 :
+                <a href={% url 'market_post' contract.market_idx %}> {{ market.studio_name }}</a>
+            </h5>
+            <h5> 마켓 카카오톡 아이디 : {{ market.kakao_id }} </h5>
+            <h5> 마켓 연락번호 : {{ market.phone }} </h5>
+            <h5> 위치 : {{ market.location }} </h5>
+        </div>
 
-    대상고객: {{ consumer_name }}님<br>
-    계약시간:<br>
-        * 시작시간: {{ contract.start_time }}<br>
-        * 종료시간: {{ contract.end_time }}<br>
-
+        <ul class="list-group">
+          <li class="list-group-item">계약금액 : {{ contract.cost }}</li>
+          <li class="list-group-item">대상고객 : {{ consumer_name }}님</li>
+          <li class="list-group-item">계약일 : {{ contract.start_time.year }}년
+          {{ contract.start_time.month }}월 {{ contract.start_time.day }}일 </li>
+           <li class="list-group-item">계약 시간 : {{ contract.start_time.time}} 부터
+           {{ contract.end_time.time }}</li>
+        </ul>
+    </div>
+</div>
 {% endblock %}
