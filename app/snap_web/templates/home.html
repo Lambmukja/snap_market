@@ -40,7 +40,18 @@
 {% if is_consumer %}
     {% if cur_tag == "추천" %}
     <div class="row">
-        <div class="col-md-3 offset-md-9">
+        <div class="col-md-3">
+            <h3>
+            {% if search == "review" %}
+                리뷰 순
+            {% elif search == "star" %}
+                별점 순
+            {% elif search == "favorite" %}
+                선호 태그 순
+            {% endif %}
+            </h3>
+    </div>
+        <div class="col-md-3 offset-md-6">
             <select id="recommend-filter" class="custom-select">
                 <option selected>추천 조건</option>
                 <option value="{% url 'tag_recommend' %}?search=review">리뷰 순</option>
