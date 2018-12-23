@@ -51,35 +51,38 @@
     </div>
 </div>
 
+{% if user_type == 'photographer' %}
 <div class="market-contract_info">
-    {% if user_type == 'photographer' %}
-        <h5>소비자와의 계약정보: {{ total_contracts }}건</h5>
-        {% if photographer_contract %}
-            <div class="row">
-            {% for username, contracts in photographer_contract.items %}
-                {% for contract in contracts %}
-                <div class="col-md-4">
-                    <a href="{% url 'contract_page' contract.id %}" class="market-card btn-block">
-                        {{ username }}님 과의 {{ contract.id }}번 계약
-                    </a>
-                </div>
-                {% endfor %}
-            {% endfor %}
-            </div>
-        {% endif %}
-    {% elif user_type == 'consumer' %}
-        <h5>{{ user.username }}님의 {{ market.studio_name }} 계약정보: {{ consumer_contract|length }}건</h5>
+    <h5>소비자와의 계약정보: {{ total_contracts }}건</h5>
+    {% if photographer_contract %}
         <div class="row">
-        {% for contract in consumer_contract %}
+        {% for username, contracts in photographer_contract.items %}
+            {% for contract in contracts %}
             <div class="col-md-4">
                 <a href="{% url 'contract_page' contract.id %}" class="market-card btn-block">
-                    {{ contract.id }}번 계약
+                    {{ username }}님 과의 {{ contract.id }}번 계약
                 </a>
             </div>
+            {% endfor %}
         {% endfor %}
         </div>
     {% endif %}
 </div>
+{% elif user_type == 'consumer' %}
+<div class="market-contract_info">
+    <h5>{{ user.username }}님의 {{ market.studio_name }} 계약정보: {{ consumer_contract|length }}건</h5>
+    <div class="row">
+    {% for contract in consumer_contract %}
+        <div class="col-md-4">
+            <a href="{% url 'contract_page' contract.id %}" class="market-card btn-block">
+                {{ contract.id }}번 계약
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endif %}
+
 
 <div class="review">
     <div class="review-title">
