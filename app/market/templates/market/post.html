@@ -88,8 +88,9 @@
     <div class="review-title">
         <h3>{{ market.studio_name }}에 대한 리뷰 : {{ reviews|length }}건</h3>
     </div>
-    <a href="{% url "review_add" market.id %}"> <i class="fas fa-pencil-alt"></i> 리뷰 작성하기</a>
-
+    {% if user_type == 'consumer' %}
+        <a href="{% url "review_add" market.id %}"> <i class="fas fa-pencil-alt"></i> 리뷰 작성하기</a>
+    {% endif %}
     {% for review in reviews %}
     <div class="card text-black bg-light mb-3">
       <div class="card-header">{{ review.reviewer_name }}님의 리뷰</div>
