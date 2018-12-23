@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='consumer',
             name='favorite',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.PositiveSmallIntegerField(), blank=True, null=True, size=None),
+            field=django.contrib.postgres.fields.ArrayField(base_field=models.PositiveSmallIntegerField(), default=list, blank=True, null=True, size=None),
         ),
     ]
