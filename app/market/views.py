@@ -13,7 +13,9 @@ def market_post_view(request, pk):
     market = Market.objects.get(pk=pk)
     tags = Tag.objects.filter(pk__in=market.tags)
     reviews = Review.objects.filter(market_idx=pk)
-    avg_stars = f"{market.stars / len(reviews):.1f}"
+    avg_stars = 0
+    if len(reviews):
+        avg_stars = f"{(market.stars / len(reviews)):.1f}"
     context = {
         "market": market,
         "tags": tags,
