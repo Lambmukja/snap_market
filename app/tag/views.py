@@ -66,7 +66,7 @@ def tag_recommend_view(request):
     elif search == 'star':
         markets = Market.objects.all()
         for market in markets:
-            count = Review.objects.filter(market_idx=market.id).count
+            count = Review.objects.filter(market_idx=market.id).count()
             avg_stars = 0
             if count > 0:
                 avg_stars = market.stars / count
@@ -80,7 +80,7 @@ def tag_recommend_view(request):
     posts = []
     for market, score in sorted_markets:
         # For score debugging
-        # print(f"market name: {market.studio_name}, score: {score}")
+        print(f"market name: {market.studio_name}, score: {score}")
         posts.append({
             'market_id': market.id,
             'market_name': market.studio_name,
