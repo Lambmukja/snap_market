@@ -10,10 +10,14 @@
             {% endfor %}
         </div>
         <h2>{{ market.studio_name }}</h2>
+
         {% if reviews %}
-            총 추천 별점: {{ market.stars }}
-            평균 별점: {{ avg_stars }}
+        <div class="star-point row">
+            <div class="col"> 전체 추천 별점 : {{ market.stars }}점</div>
+            <div class="col"> 평균 별점 : {{ avg_stars }}점 </div>
+        </div>
         {% endif %}
+
         <div class="market-location">
             위치 : {{ market.location }}
         </div>
@@ -77,12 +81,20 @@
     {% endif %}
 </div>
 
-    <h1>{{ market.studio_name }}에 대한 리뷰: {{ reviews|length }}건</h1>
-    {% if is_consumer %}
-        <p><a href="{% url "review_add" market.id %}">리뷰 작성하기</a></p>
-    {% endif %}
+<div class="review">
+    <div class="review-title">
+        <h3>{{ market.studio_name }}에 대한 리뷰 : {{ reviews|length }}건</h3>
+    </div>
+    <a href="{% url "review_add" market.id %}"> <i class="fas fa-pencil-alt"></i> 리뷰 작성하기</a>
+
     {% for review in reviews %}
-        <p>{{ review.reviewer_name }}님의 리뷰 | 별점: {{ review.stars }}</p>
-        <p>{{ review.review }}</p>
+    <div class="card text-black bg-light mb-3">
+      <div class="card-header">{{ review.reviewer_name }}님의 리뷰</div>
+      <div class="card-body">
+        <h5 class="card-title">별점 : {{ review.stars }}</h5>
+        <p class="card-text">{{ review.review }}</p>
+      </div>
+    </div>
     {% endfor %}
+</div>
 {% endblock %}
