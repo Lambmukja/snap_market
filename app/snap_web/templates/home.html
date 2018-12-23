@@ -17,9 +17,20 @@
 {% block content %}
 <div class="main_tag">
     <div class="row">
+        <div class="col">
+            {% if cur_tag == "추천" %}
+                <a href={% url "tag_recommend" %}>#추천</a>
+            {% else %}
+                <a href={% url "tag_recommend" %}>#추천</a>
+            {% endif %}
+        </div>
     {% for tag in tags %}
         <div class="col">
-            <a href={% url "tag_search" tag.id %}>#{{ tag.tag }}</a>
+            {% if cur_tag == tag.id %}
+                <a href={% url "tag_search" tag.id %}>#{{ tag.tag }}</a>
+            {% else %}
+                <a href={% url "tag_search" tag.id %}>#{{ tag.tag }}</a>
+            {% endif %}
         </div>
     {% endfor %}
     </div>

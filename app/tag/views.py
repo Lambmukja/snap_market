@@ -15,5 +15,9 @@ def tag_search_view(request, pk):
             'market_post': market.posts,
             'market_photo': market.photo,
         })
-    context = {'posts': posts, 'tags': tags}
+    context = {'posts': posts, 'tags': tags, 'cur_tag': pk}
     return render(request, "home.html", context)
+
+
+def tag_recommend_view(request):
+    pass
