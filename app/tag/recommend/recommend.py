@@ -25,13 +25,10 @@ def recommend(user_tags: List[int]):
 
         # calculate average matched weight
         filtered_tags = Tag.objects.filter(id__in=matched_tags)
-        filtered_tag_weights = [tags[tag.id].weight for tag in filtered_tags]
-
-        # if no matched tag
         if not filtered_tags:
             continue
-        avg_weight = statistics.mean(filtered_tag_weights)
-
+        weights = [tag.weight for tag in filtered_tags]
+        avg_weight = statistics.mean(weights)
         # calculate match_rate
         match_rate = len(matched_tags) / len(user_tags)
         score = Config.ALPHA * avg_weight + Config.GAMMA * match_rate
