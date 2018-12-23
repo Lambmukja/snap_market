@@ -21,5 +21,5 @@ class MarketForm(forms.ModelForm):
 
     class Meta:
         model = Market
-        fields = ('studio_name', 'location', 'posts', 'costs', 'photo',
-                  'kakao_id',)
+        fields = ('studio_name', 'location', 'working_time', 'posts', 'costs', 'photo',
+                  'phone', 'kakao_id',)
