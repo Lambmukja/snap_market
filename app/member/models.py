@@ -38,7 +38,7 @@ class Consumer(models.Model):
         '회원정보_idx', blank=True, null=True,
     )
     contracts = ArrayField(models.PositiveIntegerField())
-    favorite = ArrayField(models.PositiveSmallIntegerField(), null=True, blank=True)
+    favorite = ArrayField(models.PositiveSmallIntegerField(), default=list, null=True, blank=True)
 
 
 class Photographer(models.Model):
