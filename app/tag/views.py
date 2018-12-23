@@ -80,7 +80,7 @@ def tag_recommend_view(request):
     posts = []
     for market, score in sorted_markets:
         # For score debugging
-        print(f"market name: {market.studio_name}, score: {score}")
+        # print(f"market name: {market.studio_name}, score: {score}")
         posts.append({
             'market_id': market.id,
             'market_name': market.studio_name,
