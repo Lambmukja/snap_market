@@ -7,6 +7,7 @@ from contract.models import Contract
 from market.models import Market
 from member.forms import MemberForm, LoginForm
 from member.models import Member, Consumer, Photographer
+from tag.models import Tag
 
 
 def login_view(request):
@@ -66,6 +67,9 @@ def mypage_view(request):
 
         contracts = Contract.objects.filter(pk__in=consumer.contracts)
         context['contracts'] = contracts
+
+        favorite = Tag.objects.filter(pk__in=consumer.favorite)
+        context['favorite'] = favorite
     else:  # 사진작가
         context['member_type'] = '사진작가'
         photographer = Photographer.objects.get(pk=member.photographer_idx)
