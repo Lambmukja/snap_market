@@ -299,3 +299,12 @@ body {
     height: 60px;
     font-size: 1.5em;
 }
+
+/* ======== favorite edit ======== */
+
+.favorite-edit > h1 {
+    font-weight: bold;
+    color: #0F5ED6;
+    margin-top: 1.3em;
+    margin-bottom: 30px;
+}
