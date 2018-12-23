@@ -5,13 +5,23 @@ from contract.models import Contract
 from market.forms import MarketForm
 from market.models import Market
 from member.models import Member, Photographer, Consumer
+from review.models import Review
 from tag.models import Tag
 
 
 def market_post_view(request, pk):
     market = Market.objects.get(pk=pk)
     tags = Tag.objects.filter(pk__in=market.tags)
-    context = {"market": market, "tags": tags}
+    reviews = Review.objects.filter(market_idx=pk)
+    avg_stars = 0
+    if len(reviews):
+        avg_stars = f"{(market.stars / len(reviews)):.1f}"
+    context = {
+        "market": market,
+        "tags": tags,
+        "reviews": reviews,
+        "avg_stars": avg_stars,
+    }
 
     user = request.user
     if user.is_authenticated:
