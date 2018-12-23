@@ -27,7 +27,7 @@
     {% for tag in tags %}
         <div class="col">
             {% if cur_tag == tag.id %}
-                <a href={% url "tag_search" tag.id %}>#{{ tag.tag }}</a>
+                <a id="curr_tag" href={% url "tag_search" tag.id %}>#{{ tag.tag }}</a>
             {% else %}
                 <a href={% url "tag_search" tag.id %}>#{{ tag.tag }}</a>
             {% endif %}
