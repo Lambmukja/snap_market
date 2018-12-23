@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 from contract.models import Contract
 from market.models import Market
-from member.forms import MemberForm, LoginForm
+from member.forms import MemberForm, LoginForm, ConsumerFavoriteForm
 from member.models import Member, Consumer, Photographer
 from tag.models import Tag
 
@@ -81,3 +81,30 @@ def mypage_view(request):
             context['contracts'][market.studio_name] = Contract.objects.filter(pk__in=market.contract_idxs)
 
     return render(request, "member/mypage.html", context)
+
+
+def favorite_edit_view(request):
+    user = request.user
+    member = Member.objects.get(pk=user.id)
+    consumer = Consumer.objects.get(pk=member.consumer_idx)
+
+    if not user.is_authenticated:
+        return HttpResponse(status=403)
+    if member.member_type != 0:
+        return HttpResponse(status=401)
+
+    if request.method == 'POST':
+        form = ConsumerFavoriteForm(data=request.POST, instance=consumer)
+
+        if form.is_valid():
+            tags = form.cleaned_data.get('favorite')
+            tags = [int(tag) for tag in tags]
+            consumer.favorite = tags
+            consumer.save()
+            return redirect('member_mypage')
+
+    elif request.method == 'GET':
+        form = ConsumerFavoriteForm(instance=consumer)
+
+    context = {"form": form}
+    return render(request, 'member/edit_favorite.html', context)

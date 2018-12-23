@@ -5,6 +5,7 @@ from member.views import (
     login_view,
     logout_view,
     mypage_view,
+    favorite_edit_view,
 )
 
 urlpatterns = [
@@ -12,5 +13,5 @@ urlpatterns = [
     path('login/', login_view, name='member_login'),
     path('logout/', logout_view, name='member_logout'),
     path('mypage/', mypage_view, name='member_mypage'),
-
+    path('favorite/edit/', favorite_edit_view, name='favorite_edit'),
 ]

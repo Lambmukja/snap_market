@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>관심태그 수정하기</h2>
+    <form name="favorite_edit" method="POST" action="{% url 'favorite_edit' %}">{% csrf_token %}
+        <div class="form-box">
+            <div class="form-label col-md-2 offset-md-1">
+                {{ form.favorite.label_tag }}
+            </div>
+            <div class="form-field col-md-8">
+                {{ form.favorite }}
+            </div>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">저장하기</button>
+    </form>
+    <form action="{% url 'member_mypage' %}" method="GET">
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="취소"/>
+    </form>
+{% endblock %}
