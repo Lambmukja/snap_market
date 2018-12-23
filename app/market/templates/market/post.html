@@ -15,16 +15,19 @@
             평균 별점: {{ avg_stars }}
         {% endif %}
         <div class="market-location">
-            위치: {{ market.location }}
-        </div>
-        <div> <!-- 요일 정보는 안 입력했던가? -->
-            요일:
+            위치 : {{ market.location }}
         </div>
         <div>
-            가능시간:
+            카카오톡 ID : {{ market.kakao_id }}
         </div>
         <div>
-            금액: {{ market.costs }}
+            전화번호 : {{ market.phone }}
+        </div>
+        <div>
+            촬영 가능 시간 : {{ market.working_time }}
+        </div>
+        <div>
+            금액 : {{ market.costs }} 원
         </div>
 
         {% if user_type == 'consumer' %}

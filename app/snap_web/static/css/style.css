@@ -158,6 +158,20 @@ body {
     margin-bottom: 10px;
 }
 
+.my_page-card {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}
+
+.my_page-tag {
+    margin: 15px 10px;
+    padding: 15px;
+    border-radius: 50px;
+    border: 2px solid #1162db;
+    box-shadow: 1px 1px 2px 0px rgba(1, 1, 1, 0.34);
+    color: #1162db;
+    text-align: center;
+}
 
 /* ======== market post ======== */
 .market-content {
@@ -284,4 +298,13 @@ body {
     margin-bottom: 30px;
     height: 60px;
     font-size: 1.5em;
+}
+
+/* ======== favorite edit ======== */
+
+.favorite-edit > h1 {
+    font-weight: bold;
+    color: #0F5ED6;
+    margin-top: 1.3em;
+    margin-bottom: 30px;
 }
