@@ -22,5 +22,4 @@ class Market(models.Model):
     location = models.CharField("위치", max_length=100, blank=True, null=True)
     phone = models.CharField("전화번호", max_length=20, blank=True, null=True)
     photo = models.ImageField(upload_to=get_image_path, blank=True, null=True)
-
-    # TODO: like 수?
+    stars = models.PositiveIntegerField("총 별점", default=0)
