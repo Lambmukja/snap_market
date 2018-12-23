@@ -11,6 +11,19 @@ body {
     background-color: white !important;
     border-bottom: 2px solid #EEEEEE;
 }
+.footer {
+    margin-top: 200px;
+    background-color: #222222;
+    color: white;
+    padding: 15px;
+}
+.footer a {
+    color: #fff;
+}
+.footer a:hover {
+    color: #eee;
+    text-decoration: none;
+}
 
 /* ======== main ======== */
 .main_tag {
