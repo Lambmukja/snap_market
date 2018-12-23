@@ -17,13 +17,15 @@
 {% block content %}
 <div class="main_tag">
     <div class="row">
-        <div class="col">
-            {% if cur_tag == "추천" %}
-                <a id="curr_tag" href={% url "tag_recommend" %}>#추천</a>
-            {% else %}
-                <a href={% url "tag_recommend" %}>#추천</a>
-            {% endif %}
-        </div>
+        {% if is_consumer %}
+            <div class="col">
+                {% if cur_tag == "추천" %}
+                    <a id="curr_tag" href={% url "tag_recommend" %}>#추천</a>
+                {% else %}
+                    <a href={% url "tag_recommend" %}>#추천</a>
+                {% endif %}
+            </div>
+        {% endif %}
     {% for tag in tags %}
         <div class="col">
             {% if cur_tag == tag.id %}
