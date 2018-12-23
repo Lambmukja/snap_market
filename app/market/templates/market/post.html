@@ -48,11 +48,9 @@
             {% for username, contracts in photographer_contract.items %}
                 {% for contract in contracts %}
                 <div class="col-md-4">
-                    <div class="market-card">
-                        <a href="{% url 'contract_page' contract.id %}">
-                            {{ username }}님 과의 {{ contract.id }}번 계약
-                        </a>
-                    </div>
+                    <a href="{% url 'contract_page' contract.id %}" class="market-card btn-block">
+                        {{ username }}님 과의 {{ contract.id }}번 계약
+                    </a>
                 </div>
                 {% endfor %}
             {% endfor %}
@@ -63,11 +61,9 @@
         <div class="row">
         {% for contract in consumer_contract %}
             <div class="col-md-4">
-                <div class="market-card">
-                    <a href="{% url 'contract_page' contract.id %}">
-                        {{ contract.id }}번 계약
-                    </a>
-                </div>
+                <a href="{% url 'contract_page' contract.id %}" class="market-card btn-block">
+                    {{ contract.id }}번 계약
+                </a>
             </div>
         {% endfor %}
         </div>
